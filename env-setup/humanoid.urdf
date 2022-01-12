@@ -31,7 +31,7 @@
 	<joint name="root" type="fixed" >
 		<parent link = "base" />
 		<child link="root" />
-				<origin rpy = "0 0 0" xyz = "0.000000 0.000000 0.000000" />
+				<origin rpy = "0 0 -0.1222" xyz = "0.000000 0.000000 0.000000" />
 	</joint>
 
 	<link name="chest" >
@@ -54,7 +54,7 @@
 		</visual>
 	</link>
 
-	<joint name="chest" type="spherical" >
+	<joint name="chest" type="fixed" >
 		<parent link="root" />
 		<child link="chest" />
 				<origin rpy = "0 0 0" xyz = "0.000000 0.944604 0.000000" />
@@ -80,7 +80,7 @@
 		</visual>
 	</link>
 
-	<joint name="neck" type="spherical" >
+	<joint name="neck" type="fixed" >
 		<parent link="chest" />
 		<child link="neck" />
 				<origin rpy = "0 0 0" xyz = "0.000000 0.895576 0.000000" />
@@ -109,8 +109,9 @@
 	<joint name="right_hip" type="revolute" >
 		<parent link="root" />
 		<child link="right_hip" />
-		<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
-				<origin rpy = "0 0 0" xyz = "0.000000 0.000000 0.339548" />
+		<dynamics damping="25.0" friction="0.0"/>
+		<limit effort="0.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+				<origin rpy = "0 0 0.384" xyz = "0.000000 0.000000 0.339548" />
 		<axis xyz = "0.000000 0.000000 1.000000" />
 	</joint>
 
@@ -137,8 +138,9 @@
 	<joint name="right_knee" type="revolute" >
 		<parent link="right_hip" />
 		<child link="right_knee" />
-		 <limit effort="0" lower="-3.14" upper="0." velocity="200"/>
-			<origin rpy = "0 0 0" xyz = "0.000000 -1.686184 0.000000" />
+		<dynamics damping="25.0" friction="0.0"/>
+		 <limit effort="0.0" lower="-3.14" upper="0." velocity="0.5"/>
+			<origin rpy = "0 0 -0.4712" xyz = "0.000000 -1.686184 0.000000" />
 		<axis xyz = "0.000000 0.000000 1.000000" />
 	</joint>
 
@@ -161,12 +163,13 @@
 			</geometry>
 		</visual>
 	</link>
-	<joint name="right_ankle" type="fixed" >
+	<joint name="right_ankle" type="revolute" >
 		<parent link="right_knee" />
 		<child link="right_ankle" />
-		<!-- <limit effort="1000.0" lower="-0.785" upper="0." velocity="0.5"/> -->
-				<origin rpy = "0 0 0" xyz = "0.000000 -1.639480 0.000000" />
-		<!-- <axis xyz = "0.000000 0.000000 1.000000" /> -->
+		<dynamics damping="25.0" friction="0.0"/>
+		<limit effort="0.0" lower="-0.785" upper="0.2094" velocity="0.5"/>
+				<origin rpy = "0 0 0.2094" xyz = "0.000000 -1.639480 0.000000" />
+		<axis xyz = "0.000000 0.000000 1.000000" />
 				
 	</joint>
 	<link name="right_shoulder" >
@@ -189,7 +192,7 @@
 		</visual>
 	</link>
 
-	<joint name="right_shoulder" type="spherical" >
+	<joint name="right_shoulder" type="fixed" >
 		<parent link="chest" />
 		<child link="right_shoulder" />
 				<origin rpy = "0 0 0" xyz = "-0.096200 0.974000 0.732440" />
@@ -215,10 +218,10 @@
 		</visual>
 	</link>
 
-	<joint name="right_elbow" type="revolute" >
+	<joint name="right_elbow" type="fixed" >
 		<parent link="right_shoulder" />
 		<child link="right_elbow" />
-		<limit effort="1000.0" lower="0" upper="3.14" velocity="0.5"/>
+		<limit effort="0.0" lower="0" upper="3.14" velocity="0.5"/>
 				<origin rpy = "0 0 0" xyz = "0.000000 -1.099152 0.000000" />
 		<axis xyz = "0.000000 0.000000 1.000000" />
 	</joint>
@@ -270,8 +273,9 @@
 	<joint name="left_hip" type="revolute" >
 		<parent link="root" />
 		<child link="left_hip" />
-		<limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
-				<origin rpy = "0 0 0" xyz = "0.000000 0.000000 -0.339548" />
+		<dynamics damping="25.0" friction="0.0"/>
+		<limit effort="0.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+				<origin rpy = "0 0 0.384" xyz = "0.000000 0.000000 -0.339548" />
 		<axis xyz = "0.000000 0.000000 1.000000" />
 	</joint>
 
@@ -298,8 +302,9 @@
 	<joint name="left_knee" type="revolute" >
 		<parent link="left_hip" />
 		<child link="left_knee" />
-		<limit effort="1000.0" lower="-3.14" upper="0." velocity="0.5"/>
-				<origin rpy = "0 0 0" xyz = "0.000000 -1.686184 0.000000" />
+		<dynamics damping="25.0" friction="0.0"/>
+		<limit effort="0.0" lower="-3.14" upper="0." velocity="0.5"/>
+				<origin rpy = "0 0 -0.4712" xyz = "0.000000 -1.686184 0.000000" />
 		<axis xyz = "0.000000 0.000000 1.000000" />
 	</joint>
 
@@ -326,8 +331,9 @@
 	<joint name="left_ankle" type="revolute" >
 		<parent link="left_knee" />
 		<child link="left_ankle" />
-		<limit effort="1000.0" lower="-0.785" upper="0." velocity="0.5"/>
-				<origin rpy = "0 0 0" xyz = "0.000000 -1.639480 0.000000" />
+		<dynamics damping="25.0" friction="0.0"/>
+		<limit effort="0.0" lower="-0.785" upper="0.2094" velocity="0.5"/>
+				<origin rpy = "0 0 0.2094" xyz = "0.000000 -1.639480 0.000000" />
 		<axis xyz = "0.000000 0.000000 1.000000" />
 	</joint>
 	<link name="left_shoulder" >
@@ -350,7 +356,7 @@
 		</visual>
 	</link>
 
-	<joint name="left_shoulder" type="spherical" >
+	<joint name="left_shoulder" type="fixed" >
 		<parent link="chest" />
 		<child link="left_shoulder" />
 				<origin rpy = "0 0 0" xyz = "-0.096200 0.974000 -0.732440" />
@@ -376,10 +382,10 @@
 		</visual>
 	</link>
 
-	<joint name="left_elbow" type="revolute" >
+	<joint name="left_elbow" type="fixed" >
 		<parent link="left_shoulder" />
 		<child link="left_elbow" />
-		<limit effort="1000.0" lower="0" upper="3.14" velocity="0.5"/>
+		<limit effort="0.0" lower="0" upper="3.14" velocity="0.5"/>
 				<origin rpy = "0 0 0" xyz = "0.000000 -1.099152 0.000000" />
 		<axis xyz = "0.000000 0.000000 1.000000" />
 	</joint>
